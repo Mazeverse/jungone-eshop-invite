@@ -1,0 +1,38 @@
+
+body{
+font-family: Arial, sans-serif;
+background:#f4f6fb;
+text-align:center;
+padding:60px;
+}
+
+.container{
+max-width:600px;
+margin:auto;
+background:white;
+padding:40px;
+border-radius:12px;
+box-shadow:0 0 15px rgba(0,0,0,0.08);
+}
+
+h1{
+margin-bottom:20px;
+}
+
+.desc{
+margin-bottom:30px;
+}
+
+.join-btn{
+display:inline-block;
+padding:14px 26px;
+background:#2f8f2f;
+color:white;
+text-decoration:none;
+border-radius:8px;
+font-weight:bold;
+}
+
+.join-btn:hover{
+opacity:0.9;
+}
