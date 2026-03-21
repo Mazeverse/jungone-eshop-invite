@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta name="naver-site-verification" content="f5b826fbcb9081ed38e47e0dba9cf17513ef9668" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Canonical URL: 요청하신 도메인을 표준으로 설정 -->
+    <!-- Canonical URL -->
     <link rel="canonical" href="https://jungone.xn--hy1bx66a1wdl2ac5d.com/">
-
     <meta name="google-site-verification" content="kQ1Cw1KSdCUJ6tL939ze5QJc3Rma9WXtosoDVVNTsBY" />
     <meta name="naver-site-verification" content="f5b826fbcb9081ed38e47e0dba9cf17513ef9668" />
     
@@ -24,7 +22,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;800&display=swap');
 
         :root {
-            --jungone-green: #2E7D32; /* 정원e샵 시그니처 그린 */
+            --jungone-green: #2E7D32;
             --light-green: #E8F5E9;
             --accent-orange: #FF7043;
             --text-dark: #263238;
@@ -52,11 +50,12 @@
             text-align: center;
             box-shadow: 0 20px 40px rgba(46, 125, 50, 0.08);
             border: 1px solid #EEE;
+            position: relative;
         }
 
         .icon-header {
             font-size: 3.5rem;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             display: inline-block;
             animation: bounce 2s infinite;
         }
@@ -64,6 +63,56 @@
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
+        }
+
+        /* 추천인 아이디 복사 카드 스타일 */
+        .id-copy-card {
+            background: #F1F8E9;
+            border: 2px dashed var(--jungone-green);
+            border-radius: 20px;
+            padding: 15px 20px;
+            margin-bottom: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .id-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--jungone-green);
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .id-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .id-value {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            letter-spacing: 1px;
+        }
+
+        .id-copy-btn {
+            background: var(--jungone-green);
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 4px 10px rgba(46, 125, 50, 0.15);
+        }
+
+        .id-copy-btn:active {
+            transform: scale(0.95);
         }
 
         h1 {
@@ -77,12 +126,11 @@
         .desc {
             font-size: 1rem;
             color: #546E7A;
-            margin-bottom: 35px;
+            margin-bottom: 30px;
             line-height: 1.6;
             word-break: keep-all;
         }
 
-        /* 가입 버튼 */
         .join-btn {
             display: block;
             background: var(--jungone-green);
@@ -103,7 +151,6 @@
             box-shadow: 0 15px 30px rgba(46, 125, 50, 0.3);
         }
 
-        /* 안내 섹션 */
         .info-box {
             background: var(--light-green);
             border-radius: 25px;
@@ -134,7 +181,6 @@
             margin-bottom: 0;
         }
 
-        /* 블로그 링크 카드 */
         .blog-card {
             display: flex;
             align-items: center;
@@ -183,16 +229,50 @@
             font-size: 0.8rem;
             color: #B0BEC5;
         }
+
+        /* 토스트 알림 스타일 */
+        #toast {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: #37474F;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            opacity: 0;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        #toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="icon-header">🌿</div>
+
+    <!-- 추천인 아이디 복사 카드 -->
+    <div class="id-copy-card">
+        <span class="id-label">추천인 아이디</span>
+        <div class="id-row">
+            <span id="referralId" class="id-value">hello</span>
+            <button class="id-copy-btn" onclick="copyId()">복사</button>
+        </div>
+    </div>
+
     <h1>정원e샵 친구초대</h1>
     <p class="desc">
         대상웰라이프 공식몰 정원e샵!<br>
-        아래 전용 링크로 가입하고 <b>특별한 추천인 혜택</b>을 놓치지 마세요.
+        전용 링크로 가입하고 <b>특별한 혜택</b>을 받으세요.
     </p>
 
     <a class="join-btn" href="https://m.jungoneshop.com/member/join_method.php?inviteMemNo=178762&shareLinkCopyFl=y" target="_blank">
@@ -206,7 +286,6 @@
         </p>
     </div>
 
-    <!-- 블로그 가이드 연결 -->
     <a class="blog-card" href="https://blog.naver.com/cylony/223812793024" target="_blank">
         <span class="blog-icon">📝</span>
         <div class="blog-text">
@@ -219,6 +298,24 @@
         <p class="update-date">최종 업데이트: 2026년 3월 21일</p>
     </footer>
 </div>
+
+<!-- 토스트 알림 요소 -->
+<div id="toast">추천인 아이디가 복사되었습니다! ✨</div>
+
+<script>
+    function copyId() {
+        const idText = "hello";
+        navigator.clipboard.writeText(idText).then(() => {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }).catch(err => {
+            console.error('복사 실패:', err);
+        });
+    }
+</script>
 
 </body>
 </html>
